@@ -1,0 +1,288 @@
+openapi: "3.0.3"
+info:
+  title: "shinytech_backend API"
+  description: "shinytech_backend API"
+  version: "1.0.0"
+servers:
+- url: "https://shinytech_backend"
+paths:
+  /:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /shinybank/{id}/balance:
+    get:
+      description: ""
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "No id supplied or not a valid UUID"
+        "404":
+          description: "Not Found"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "No such user exists with this UUID"
+  /shinybank/{id}/deposit:
+    post:
+      description: ""
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "id"
+        in: "query"
+        required: false
+        schema:
+          type: "number"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Amount is less or equal to zero"
+                Example#2:
+                  value: "No amount supplied or not a number"
+                Example#3:
+                  value: "No id supplied or not a valid UUID"
+        "404":
+          description: "Not Found"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "No such user exists with this UUID"
+  /shinybank/{id}/transaction/{toId}:
+    post:
+      description: ""
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "toId"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "id"
+        in: "query"
+        required: false
+        schema:
+          type: "number"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "OK"
+                Example#2:
+                  value: "Amount is more than balance"
+                Example#3:
+                  value: "Amount is less or equal to zero"
+                Example#4:
+                  value: "No amount supplied or not a number"
+                Example#5:
+                  value: "You can't send money to yourself"
+                Example#6:
+                  value: "No recipient id supplied or not a valid UUID"
+                Example#7:
+                  value: "No id supplied or not a valid UUID"
+        "404":
+          description: "Not Found"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "No such recipient user exists with this UUID"
+                Example#2:
+                  value: "No such user exists with this UUID"
+  /shinybank/{id}/transactions:
+    get:
+      description: ""
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "No id supplied or not a valid UUID"
+        "404":
+          description: "Not Found"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "No such user exists with this UUID"
+  /shinybank/{id}/withdraw:
+    post:
+      description: ""
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "id"
+        in: "query"
+        required: false
+        schema:
+          type: "number"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Amount is less or equal to zero"
+                Example#2:
+                  value: "No amount supplied or not a number"
+                Example#3:
+                  value: "No id supplied or not a valid UUID"
+        "404":
+          description: "Not Found"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "No such user exists with this UUID"
+  /shinybank/transactions:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /shinypassport:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+    post:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /shinypassport/{id}:
+    delete:
+      description: ""
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "OK"
+                Example#2:
+                  value: "No id supplied or not a valid UUID"
+    get:
+      description: ""
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "No id supplied or not a valid UUID"
+    put:
+      description: ""
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "OK"
+                Example#2:
+                  value: "No id supplied or not a valid UUID"
